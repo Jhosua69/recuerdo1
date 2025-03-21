@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escucha esto</title>
+    <!-- Importar la fuente Comfortaa desde Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            text-align: center;
+            background: black;
+            color: white;
+            font-family: 'Comfortaa', sans-serif; /* Usando la fuente Comfortaa */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Ajustar el tamaño del título para que sea responsivo */
+        h1.neon-text {
+            font-size: 4vw; /* Tamaño relativo al ancho de la ventana */
+            animation: glow 1.5s infinite alternate;
+            text-transform: uppercase;
+        }
+
+        /* Animación para el efecto de neón */
+        @keyframes glow {
+            0% { text-shadow: 0 0 5px #fff, 0 0 10px #ff00ff; }
+            50% { text-shadow: 0 0 20px #fff, 0 0 30px #ff00ff; }
+            100% { text-shadow: 0 0 5px #fff, 0 0 10px #ff00ff; }
+        }
+
+        /* Ajuste del contenido de las letras para que sea legible en pantallas pequeñas */
+        #lyrics {
+            margin-top: 20px;
+            font-size: 4vw; /* Usando unidades relativas para el tamaño de fuente */
+            line-height: 1.6;
+        }
+
+        .neon-line {
+            animation: glow 1.5s infinite alternate;
+        }
+
+        /* Estilos para el botón de retroceder */
+        button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: #ff00ff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 2rem;
+            cursor: pointer;
+            border-radius: 5px;
+            z-index: 10;
+        }
+
+        /* Mejorar el tamaño de los botones en pantallas pequeñas */
+        @media (max-width: 600px) {
+            button {
+                font-size: 1.5rem;
+                padding: 8px 15px;
+            }
+
+            h1.neon-text {
+                font-size: 6vw; /* Aumenta el tamaño relativo en pantallas más pequeñas */
+            }
+
+            #lyrics {
+                font-size: 5vw; /* Aumenta el tamaño relativo de las letras */
+            }
+        }
+
+        /* Ajustar el tamaño de la fuente en pantallas grandes */
+        @media (min-width: 1200px) {
+            h1.neon-text {
+                font-size: 50px; /* Fija un tamaño grande en pantallas grandes */
+            }
+
+            #lyrics {
+                font-size: 28px; /* Aumenta un poco el tamaño de las letras */
+            }
+        }
+
+        /* Ajuste del reproductor de audio */
+        audio {
+            width: 100%; /* Hacer que el reproductor se adapte al ancho de la pantalla */
+            max-width: 500px; /* Limitar su ancho máximo */
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="window.history.back()">⬅</button>
+    <audio controls autoplay>
+        <source src="Ed Sheeran.mp3" type="audio/mpeg">
+    </audio>
+    <h1 class="neon-text">Carta para Annet</h1>
+    <div id="lyrics"></div>
+
+    <script>
+        const lyrics = [
+            { text: "Querida Annet,", time: 2000 },
+            { text: "No tengo palabras suficientes para expresar lo que siento,", time: 3000 },
+            { text: "pero quiero intentar hacerte saber todo lo que he guardado en mi corazón.", time: 3500 },
+            { text: "Lo que quiero más que nada en este mundo es estar a tu lado,", time: 4000 },
+            { text: "vivir contigo, y compartir cada momento, tanto los buenos como los malos.", time: 4000 },
+            { text: "No importa cuántos problemas tengamos o cuántas dificultades surjan,", time: 4500 },
+            { text: "porque lo único que realmente deseo es estar contigo.", time: 4500 },
+            { text: "", time: 1000 },
+            { text: "Recuerdo cuando me decías que no sabías si estudiar o no,", time: 4000 },
+            { text: "y yo siempre insistía en que lo hicieras.", time: 3500 },
+            { text: "Ahora, ver que ya sabes lo que deseas, me hace sentir feliz.", time: 4000 },
+            { text: "A pesar de que las circunstancias a veces nos ponen a prueba,", time: 4000 },
+            { text: "me doy cuenta de que en ti encontré a la persona que realmente quiero en mi vida.", time: 4500 },
+            { text: "", time: 1000 },
+            { text: "Mis sueños antes eran simples, solo dinero y éxito,", time: 4500 },
+            { text: "pero ahora todo ha cambiado.", time: 4000 },
+            { text: "Mi mayor sueño es verte feliz,", time: 4000 },
+            { text: "verte alcanzar todo lo que te propones, que sigas tus sueños de ser farmacéutica,", time: 4500 },
+            { text: "que trabajes con niños, que abras tu propia farmacia y sigas ese camino que tanto amas.", time: 5000 },
+            { text: "Quiero acompañarte en cada paso de ese camino", time: 4500 },
+            { text: "y, aunque me entusiasma pensar en todo lo que podemos lograr juntos,", time: 5000 },
+            { text: "también quiero cuidarte, apoyarte y ser ese alguien que siempre esté a tu lado.", time: 5000 },
+            { text: "", time: 1000 },
+            { text: "A veces, cuando te miro, solo pienso en lo afortunado que soy de tenerte,", time: 5000 },
+            { text: "y me doy cuenta de lo mucho que te quiero.", time: 4500 },
+            { text: "Mis viejos sueños han quedado atrás, porque ahora solo pienso en ti,", time: 5000 },
+            { text: "en nuestra vida juntos.", time: 4000 },
+            { text: "Quiero enseñarte cosas, desde computadoras y programación hasta cómo cocinar juntos en nuestra propia cocina.", time: 5000 },
+            { text: "Imagina lo que sería vivir nuestra vida,", time: 5000 },
+            { text: "ver películas, reírnos, bailar, tener un perro husky que no te deje dormir,", time: 6000 },
+            { text: "y un mono que juntos cuidaremos.", time: 6000 },
+            { text: "", time: 1000 },
+            { text: "Aunque las palabras a veces no sean suficientes para describir lo que siento,", time: 6000 },
+            { text: "quiero que sepas que todo lo que hago y todo lo que quiero es por ti.", time: 6000 },
+            { text: "Me encantaría que estuvieras a mi lado en mis momentos importantes,", time: 6000 },
+            { text: "como en mi graduación y en todo lo que logremos en el futuro.", time: 6500 },
+            { text: "", time: 1000 },
+            { text: "Por favor, no te sientas mal. No es mi intención que lo hagas.", time: 6500 },
+            { text: "Solo quiero que veas lo importante que eres para mí,", time: 6000 },
+            { text: "que tú eres todo lo que quiero y necesito.", time: 6000 },
+            { text: "No importa lo que pase, siempre voy a estar aquí,", time: 6500 },
+            { text: "y mi mayor deseo es que podamos construir algo hermoso juntos.", time: 7000 },
+            { text: "", time: 1000 },
+            { text: "No me arrepiento de haberte conocido,", time: 6500 },
+            { text: "y si algún día escribo un libro sobre todo esto, lo haré para ti,", time: 7000 },
+            { text: "porque eres la persona que más quiero en este mundo.", time: 7500 },
+            { text: "", time: 1000 },
+            { text: "Te pido perdón si alguna vez no me expresé bien,", time: 6500 },
+            { text: "pero nunca dudes de lo que siento por ti.", time: 7000 },
+            { text: "Eres mi vida, y no hay nadie más.", time: 7500 },
+            { text: "", time: 1000 },
+            { text: "Con todo mi amor,", time: 7000 },
+            { text: "Jhosua", time: 3500 }
+        ];
+
+        let index = 0;
+
+        function showLyrics() {
+            if (index < lyrics.length) {
+                const line = lyrics[index];
+                const div = document.createElement('div');
+                div.classList.add('neon-line');
+                div.innerText = line.text;
+                document.getElementById("lyrics").appendChild(div);
+                index++;
+                setTimeout(showLyrics, line.time);
+            }
+        }
+
+        showLyrics();
+    </script>
+</body>
+</html>
